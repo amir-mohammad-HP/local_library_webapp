@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% load custom_tags %}
+
+{% block head %}
+    <title> {% translate "categories" %}</title>
+{% endblock head %}
+
+{% block main %}
+
+    <main class='container'>
+        <div class='control big-title center'>
+            <h1 class='center header '>
+                {% translate "Categories" %}
+            </h1>
+            <div class='control book-control-column'>
+                <a href="{% url 'theCategories:create' %}">
+                    <button > {% translate "add new category" %} </button ></a>
+            </div>
+        </div>
+
+        {% for cat in category_list %} 
+            <article class='episode'>
+                <a href="{{ cat.get_view }}" class='book-article-link'>
+                    <div class='episode__title'> {{ cat.name }} </div>
+                </a>    
+                <div>
+                    {% comment %} <a href="{{ book.get_view }}" class='book-article-link'> {% endcomment %}
+                    <div class='episode__content'>
+
+                        <div class='subject'> {% translate 'No. books :' %}</div>
+                        <div class='subject__content'> <p> {{ cat.get_books_number }} </p> </div>
+                        
+                        <div class='subject'> {% translate 'shelf number:' %}</div>
+                        <div class='subject__content'> <p> {{ cat.get_signiture }} </p> </div>
+
+
+                    </div>
+                    {% comment %} </a> {% endcomment %}
+                    <div class='control'>
+                        <a href="{{ cat.get_edit_view }}"><button > {% translate "edit" %} </button></a>
+                        <a href="{{ cat.get_delete_view }}"><button > {% translate "delete" %} </button></a>
+                    </div>
+
+                </div>
+            </article>
+        
+        {% endfor %}
+             
+        
+    </main>
+
+
+{% endblock main %}

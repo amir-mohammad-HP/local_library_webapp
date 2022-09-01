@@ -1,0 +1,122 @@
+<br>
+        <h2>
+            
+            {% if view == 'all' %}
+                {% translate "All the books" %}
+            {% elif view == 'category' %} 
+                {{ category }} {% translate "books" %}
+                
+                {% if category.name != 'No Category' %}
+                    <a href="{% url 'theCategories:edit' category.id %}" type="button" class="btn btn-primary">{% translate "edit" %}</a>
+                    <a href="{% url 'theCategories:delete' category.id %}" type="button" class="btn btn-secondary">{% translate "delete" %}</a>
+                {% endif %}
+            {% elif view == 'search' %}
+                {% translate "Search" %}
+            {% endif %}
+                
+             </h2>
+        <div class="row">
+            <div class='col-5'></div>
+            <a class="col-lg-3 col-sm-2 button bg-danger text-white text-center p-0 border rounded-7 "
+                href='{% url "books:create" %}'>
+            <blockquote class="blockquote mb-0">
+                 {% translate "بیفزا ای جانا هر چه بیش تر بهتر" %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-journal-plus" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 5.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 .5-.5z"/>
+                    <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+                    <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+                </svg>  
+                
+            </blockquote>
+            </a>
+            <div class='col-5'></div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="list-group ">     
+            {% for book in page_obj %} 
+
+                <a href="{{ book.get_view }}" class="list-group-item list-group-item-action" aria-current="true">
+                  <div class="d-flex w-100 justify-content-between ">
+                    <h5 class="mb-1">{{ book|title }}</h5>
+                    <small>{{ book.create_on|date:'y m d'}}</small>
+                  </div>
+                  <p class="mb-1">
+                    language : {{ book.language }}
+                    </p>
+
+                  <small>category : {{ book.category }}</small>
+                </a>
+                
+            {% endfor %}
+            </div>
+        </div>
+
+
+<!-- navigation bar -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#"> کتابدار </a>
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+            {% url 'books:all_books' as books_url %} 
+            <a class="nav-link {% if request.get_full_path == books_url %} disabled {% endif %}" href='{{ books_url }}'> {% translate "books" %} </span></a>
+        </li>
+        <li class="nav-item">
+            {% url 'theCategories:all_categories' as category_url %}    
+            <a class="nav-link {% if request.get_full_path == category_url %} disabled {% endif %}" href="{% url 'theCategories:all_categories' %}">{% translate "category" %}</a>
+        </li>
+        <li class="nav-item">
+            {% url 'books:create' as create_book_url %}
+            <a class="nav-link {% if request.get_full_path == create_book_url %} disabled {% endif %}" href="{% url 'books:create' %}">{% translate "add book" %}</a>
+        </li>
+      </ul>
+    </div>
+    <div class='row'>
+        <form class="form-inline" method='get' action='{% url 'books:all_books' %}'>
+            <input class="form-control mr-sm-2" name='search' type="search" placeholder="{% translate 'search may find it' %}" aria-label="Search" align="right">
+            <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">{% translate "search" %}</button>
+        </form>
+    </div>
+    {% comment %} language {% endcomment %}
+    <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+        <input name="next" type="hidden" value="{{ redirect_to }}">
+        <select name="language">
+            {% get_current_language as LANGUAGE_CODE %}
+                <option value="fa"{% if "fa" == LANGUAGE_CODE %} selected{% endif %}>
+                    فارسی (fa)
+                </option>
+                <option value="en"{% if "en" == LANGUAGE_CODE %} selected{% endif %}>
+                    english (en)
+                </option>
+        </select>
+        <input type="submit" value="Go">
+    </form>
+  </nav>
+
+
+  {% block main %}
+  <main class='container'>
+      <br>
+      <h1>{{ book.title }}</h1>
+      <a href='{{ book.get_edit_view }}' type="button" class="btn btn-primary">{% translate "edit" %}</a>
+      <a href='{{ book.get_delete_view }}' type="button" class="btn btn-secondary">{% translate "delete" %}</a>
+      <a href='{% url 'books:create_copy' book.id %}' type="button" class="btn btn-success">{% translate "add copy" %}</a>
+  
+      <br>
+      <h2> {% translate "existing copies" %}</h2>
+      <div class='row ' >
+          {% for copy in copies %}
+              <p class='  '>{{ copy.author }} | {{ copy.translator }}| {{ copy.shelf_code }}</p>
+              <a href='{{ copy.get_edit_view }}' type="button" class="btn btn-primary">{% translate "edit" %}</a>
+              <a href='{{ copy.get_delete_view }}' type="button" class="btn btn-secondary">{% translate "delete" %}</a>
+              <br>
+          {% endfor %}
+      </div>
+  </main>
+  {% endblock main %}

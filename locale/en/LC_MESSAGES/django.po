@@ -1,0 +1,349 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-08-05 17:34+0430\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: books/forms.py:12
+msgid "Category name"
+msgstr ""
+
+#: books/forms.py:19 books/forms.py:46
+msgid "This name is too long."
+msgstr ""
+
+#: books/forms.py:37 search/forms.py:12
+msgid "Title"
+msgstr ""
+
+#: books/forms.py:38 search/forms.py:45
+msgid "Category"
+msgstr ""
+
+#: books/forms.py:39
+msgid "Language"
+msgstr ""
+
+#: books/forms.py:74
+msgid "Author"
+msgstr ""
+
+#: books/forms.py:75
+msgid "Translator"
+msgstr ""
+
+#: books/forms.py:76
+msgid "Published on"
+msgstr ""
+
+#: books/forms.py:77
+msgid "isbn"
+msgstr ""
+
+#: books/models.py:10
+msgid "persian"
+msgstr ""
+
+#: books/models.py:11
+msgid "english"
+msgstr ""
+
+#: books/models.py:12
+msgid "arabic"
+msgstr ""
+
+#: books/models.py:13
+msgid "other"
+msgstr ""
+
+#: books/models.py:22
+msgid "must be at least 2 characters"
+msgstr ""
+
+#: books/templates/books/AllBooks.html:7 books/templates/books/AllBooks.html:22
+#: books/templates/books/create.html:19 help.html:7 help.html:68
+#: library/templates/base.html:42 search/forms.py:76
+msgid "books"
+msgstr ""
+
+#: books/templates/books/AllBooks.html:18 help.html:5
+msgid "All the books"
+msgstr ""
+
+#: books/templates/books/AllBooks.html:27
+#: books/templates/books/AllBooks.html:69 books/templates/books/book.html:14
+#: books/templates/books/book.html:57 help.html:10 help.html:108 help.html:117
+#: search/templates/search/results.html:65
+#: search/templates/search/results.html:136
+#: theCategories/templates/theCategories/AllCategories.html:44
+msgid "edit"
+msgstr ""
+
+#: books/templates/books/AllBooks.html:29
+#: books/templates/books/AllBooks.html:70 books/templates/books/book.html:16
+#: books/templates/books/book.html:58 help.html:11 help.html:109 help.html:118
+#: search/templates/search/results.html:66
+#: search/templates/search/results.html:137
+#: theCategories/templates/theCategories/AllCategories.html:45
+msgid "delete"
+msgstr ""
+
+#: books/templates/books/AllBooks.html:36 help.html:14
+msgid "Search"
+msgstr ""
+
+#: books/templates/books/AllBooks.html:53
+#: search/templates/search/results.html:40
+#: search/templates/search/results.html:84
+msgid "language :"
+msgstr ""
+
+#: books/templates/books/AllBooks.html:56
+#: search/templates/search/results.html:87
+msgid "No. copies :"
+msgstr ""
+
+#: books/templates/books/AllBooks.html:59
+#: search/templates/search/results.html:59
+#: search/templates/search/results.html:90
+msgid "category :"
+msgstr ""
+
+#: books/templates/books/AllBooks.html:62
+msgid "created on :"
+msgstr ""
+
+#: books/templates/books/AllBooks.html:71 books/templates/books/book.html:18
+#: help.html:110 search/templates/search/results.html:138
+msgid "add copy"
+msgstr ""
+
+#: books/templates/books/AllBooks.html:98
+#: books/templates/books/AllBooks.html:104
+#: search/templates/search/results.html:167
+#: search/templates/search/results.html:173
+msgid "previous"
+msgstr ""
+
+#: books/templates/books/AllBooks.html:100
+#: search/templates/search/results.html:169
+msgid "1"
+msgstr ""
+
+#: books/templates/books/AllBooks.html:117
+#: search/templates/search/results.html:186
+msgid "Go"
+msgstr ""
+
+#: books/templates/books/AllBooks.html:120
+#: search/templates/search/results.html:189
+msgid "Page"
+msgstr ""
+
+#: books/templates/books/AllBooks.html:128
+#: books/templates/books/AllBooks.html:133
+#: search/templates/search/results.html:197
+#: search/templates/search/results.html:202
+msgid "Next"
+msgstr ""
+
+#: books/templates/books/AllBooks.html:139
+#: search/templates/search/results.html:208
+msgid "this page is not valid"
+msgstr ""
+
+#: books/templates/books/book.html:4
+msgid "book"
+msgstr ""
+
+#: books/templates/books/book.html:23
+msgid "Existing Copies"
+msgstr ""
+
+#: books/templates/books/book.html:27
+msgid "No copy Exits"
+msgstr ""
+
+#: books/templates/books/book.html:41 search/templates/search/results.html:43
+#: search/templates/search/results.html:102
+msgid "author :"
+msgstr ""
+
+#: books/templates/books/book.html:44 search/templates/search/results.html:46
+#: search/templates/search/results.html:107
+msgid "translator :"
+msgstr ""
+
+#: books/templates/books/book.html:47
+msgid "ISBN :"
+msgstr ""
+
+#: books/templates/books/book.html:50
+msgid "published date :"
+msgstr ""
+
+#: books/templates/books/create.html:7
+msgid "add books"
+msgstr ""
+
+#: books/templates/books/create.html:24
+msgid "Please enter book properties"
+msgstr ""
+
+#: books/templates/books/create.html:29
+#: theCategories/templates/theCategories/create.html:20
+msgid "submit"
+msgstr ""
+
+#: books/templates/books/delete.html:4
+msgid "delete book"
+msgstr ""
+
+#: books/templates/books/delete.html:10
+msgid "Delete book"
+msgstr ""
+
+#: books/templates/books/delete.html:18
+#: books/templates/books/delete_copy.html:18
+#: theCategories/templates/theCategories/delete.html:18
+msgid " Are you sure want to delete this ?"
+msgstr ""
+
+#: books/templates/books/delete.html:19
+#: books/templates/books/delete_copy.html:19
+#: theCategories/templates/theCategories/delete.html:19
+msgid "Delete"
+msgstr ""
+
+#: books/templates/books/delete_copy.html:4
+msgid "delete copy"
+msgstr ""
+
+#: books/templates/books/delete_copy.html:10
+msgid "Delete book copy"
+msgstr ""
+
+#: help.html:23
+msgid "بیفزا ای جانا هر چه بیش تر بهتر"
+msgstr ""
+
+#: help.html:72 library/templates/base.html:48
+msgid "category"
+msgstr ""
+
+#: help.html:76 library/templates/base.html:54
+msgid "add book"
+msgstr ""
+
+#: help.html:82
+msgid "search may find it"
+msgstr ""
+
+#: help.html:83 library/templates/base.html:36
+#: search/templates/search/results.html:7
+#: search/templates/search/results.html:24
+msgid "search"
+msgstr ""
+
+#: help.html:113
+msgid "existing copies"
+msgstr ""
+
+#: search/forms.py:23
+msgid "Author/Translator"
+msgstr ""
+
+#: search/forms.py:34 search/forms.py:44
+msgid "All"
+msgstr ""
+
+#: search/forms.py:35
+msgid "language"
+msgstr ""
+
+#: search/forms.py:54
+msgid "pulished year"
+msgstr ""
+
+#: search/forms.py:63
+msgid "ISBN"
+msgstr ""
+
+#: search/forms.py:75
+msgid "copies"
+msgstr ""
+
+#: search/forms.py:78
+msgid "search in "
+msgstr ""
+
+#: search/templates/search/results.html:20
+msgid "give it a shot may you got what you need"
+msgstr ""
+
+#: search/templates/search/results.html:25
+msgid "reset"
+msgstr ""
+
+#: search/templates/search/results.html:53
+#: search/templates/search/results.html:112
+msgid "published :"
+msgstr ""
+
+#: search/templates/search/results.html:56
+msgid "shelf code :"
+msgstr ""
+
+#: search/templates/search/results.html:99
+msgid "copy :"
+msgstr ""
+
+#: theCategories/templates/theCategories/AllCategories.html:7
+msgid "categories"
+msgstr ""
+
+#: theCategories/templates/theCategories/AllCategories.html:15
+msgid "Categories"
+msgstr ""
+
+#: theCategories/templates/theCategories/AllCategories.html:19
+msgid "add new category"
+msgstr ""
+
+#: theCategories/templates/theCategories/AllCategories.html:33
+msgid "No. books :"
+msgstr ""
+
+#: theCategories/templates/theCategories/AllCategories.html:36
+msgid "shelf number:"
+msgstr ""
+
+#: theCategories/templates/theCategories/create.html:4
+msgid "add category"
+msgstr ""
+
+#: theCategories/templates/theCategories/create.html:15
+msgid "Please enter catrgory"
+msgstr ""
+
+#: theCategories/templates/theCategories/delete.html:4
+msgid "delete category"
+msgstr ""
+
+#: theCategories/templates/theCategories/delete.html:10
+msgid "Delete Category"
+msgstr ""

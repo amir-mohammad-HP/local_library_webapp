@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block head %}
+    <title> {% translate "book" %} </title>
+{% endblock head %}
+
+{% block main %}
+    <main class='container'>
+
+        <div class='control header big-title center'>
+            <h1 class='down-margin'>{{ book.title }}</h1>
+            <div class='control book-control-column'>
+                <a href='{{ book.get_edit_view }}' >
+                    <button> {% translate "edit" %} </button></a>
+                <a href='{{ book.get_delete_view }}' >
+                    <button> {% translate "delete" %} </button></a>
+                <a href="{% url 'books:create_copy' book.id %}">
+                    <button> {% translate "add copy" %} </button></a>
+            </div>
+        </div>
+        {% if copies %}
+            <h2 class='center header'>
+            {% translate "Existing Copies" %}     
+            </h1>
+        {% else %}
+            <h2 class='center header'>
+                {% translate "No copy Exits" %}     
+            </h1>
+        {% endif %}
+        
+        {% for copy in copies %}
+            <article class='episode'>
+                <a class='book-article-link'>
+                    <div class='episode__title'> {{ copy.shelf_code }} </div>
+                </a>    
+                <div>
+                    {% comment %} <a href="{{ book.get_view }}" class='book-article-link'> {% endcomment %}
+                        <div class='episode__content'>
+
+                            <div class='subject'> {% translate 'author :' %}</div>
+                            <div class='subject__content'> <p> {{ copy.author }} </p> </div>
+                            
+                            <div class='subject'> {% translate 'translator :' %}</div>
+                            <div class='subject__content'> <p> {{ copy.translator }} </p> </div>
+
+                            <div class='subject'> {% translate 'ISBN :' %}</div>
+                            <div class='subject__content'> <p> {{ copy.isbn }} </p> </div>
+
+                            <div class='subject'> {% translate 'published date :' %}</div>
+                            <div class='subject__content'> <p> {{ copy.published_on|date:'y m d' }} </p> </div>
+
+                        </div>
+                    {% comment %} </a> {% endcomment %}
+                    <div class='control'>
+                        <a href="{{ copy.get_edit_view }}"><button > {% translate "edit" %} </button></a>
+                        <a href="{{ copy.get_delete_view }}"><button > {% translate "delete" %} </button></a>
+                    </div>
+
+                </div>
+            </article>
+        
+        {% endfor %}
+             
+        
+        
+    </main>
+
+
+{% endblock main %}

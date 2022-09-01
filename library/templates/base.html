@@ -1,0 +1,96 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE  html>  
+<html lang='en'  >
+    <head  >
+        {% block head %}{% endblock head %}
+        
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/nav.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/list_books.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/paginator.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/alerts.css' %}">
+
+        {% block head_link %}{% endblock head_link %}
+
+        <script src="{% static 'js/paginator.js' %}"></script>
+        
+
+        {% block head_script %}{% endblock head_script %} 
+        
+    </head>
+
+    <body {% block body_attr %}{% endblock body_attr %}>
+        <header>
+            {% block headerUp %} {% endblock headerUp %}
+           
+            {% block headerDown %}{% endblock headerDown %}
+
+            <nav class="navigation">
+                <ul class="navigator">
+                    {% url 'search:search' as search_url %} 
+                    <a class="" href='{{ search_url }}' >
+                        <li class="navigation {% if request.get_full_path == search_url %} disabled {% endif %}" >
+                             {% translate "search" %} 
+                        </li></a>
+
+                    {% url 'books:all_books' as books_url %} 
+                    <a class="" href='{{ books_url }}' >
+                    <li class="navigation {% if request.get_full_path == books_url %} disabled {% endif %}" >
+                         {% translate "books" %} 
+                    </li></a>
+
+                    {% url 'theCategories:all_categories' as category_url %}  
+                    <a class="" href="{% url 'theCategories:all_categories' %}"> 
+                    <li class="navigation {% if request.get_full_path == category_url %} disabled {% endif %}"> 
+                        {% translate "category" %}
+                    </li></a>
+
+                    {% url 'books:create' as create_book_url %}
+                    <a class="" href="{% url 'books:create' %}">
+                    <li class="navigation {% if request.get_full_path == create_book_url %} disabled {% endif %}">
+                        {% translate "add book" %}
+                    </li></a>
+                    <li class='navigation language'>
+                        <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                            <input name="next" type="hidden" value="{{ redirect_to }}">
+                            <select name="language" onchange="this.form.submit()">
+                                {% get_current_language as LANGUAGE_CODE %}
+                                    <option value="fa"{% if "fa" == LANGUAGE_CODE %} selected{% endif %}>
+                                        فارسی (fa)
+                                    </option>
+                                    <option value="en"{% if "en" == LANGUAGE_CODE %} selected{% endif %}>
+                                        english (en)
+                                    </option>
+                            </select>
+                            {% comment %} <input type="submit" value="Go"> {% endcomment %}
+                        </form>
+                    </li>
+                  </ul>
+                  
+            </nav>
+        </header>
+
+        {% block section %} 
+            <section > </section>
+            {% endblock section %}
+
+
+        {% block main %} 
+            <main>  </main>
+            {% endblock main %}
+
+
+        {% block footer %}
+            <footer> 
+            </footer>
+            {% endblock footer %}
+
+            
+                
+    </body>
+    
+    
+</html> 

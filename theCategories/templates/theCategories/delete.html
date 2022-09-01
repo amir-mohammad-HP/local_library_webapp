@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block head %}
+    <title> {% translate "delete category" %}</title>
+{% endblock head %}
+
+{% block section %}
+<section class='component'>
+    <div class='box_cover'>
+        <h3> {% translate "Delete Category" %} </h3>
+    </div>
+    <div class='form-outter'>
+
+        <h2> {{ category }} </h2>
+
+        <form method='post'>
+            {% csrf_token %}
+            {% blocktranslate %} Are you sure want to delete this ?{% endblocktranslate %}
+            <button class='valid-button' type='submit'> {% translate "Delete" %}  </button>
+            {% comment %} <button class='btn btn-primary' type='submit'> ثبت و جدید </button> {% endcomment %}
+        </form>
+
+    </div>
+
+</section>
+{% endblock section %}

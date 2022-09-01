@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block head %}
+    <title> {% translate "add category" %}</title>
+{% endblock head %}
+
+{% block section %}
+<section class='component'>
+    <div class='box_cover'>
+        
+        <h3> Category </h3>
+    </div>
+    <div class='form-outter'>
+
+        <h2> {% translate "Please enter catrgory" %} </h2>
+
+        <form method='post'>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class='valid-button' type='submit'> {% translate "submit" %}  </button>
+            {% comment %} <button class='btn btn-primary' type='submit'> ثبت و جدید </button> {% endcomment %}
+        </form>
+
+    </div>
+
+</section>
+{% endblock section %}

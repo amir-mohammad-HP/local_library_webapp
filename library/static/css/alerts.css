@@ -1,0 +1,40 @@
+.alert {
+    position: absolute;
+    display: none;
+    padding: 1em 1.4em;
+    width:50%;
+    font-size: 0.9em;
+    font-weight: 300;
+    line-height: .62;
+    margin: auto;
+    margin-top: 8em;
+    margin-bottom: 0;
+    background: transparent;
+    color: white;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Error */ 
+.alert-error { 
+    background: #e74c3c; 
+    border: 1px solid #c0392b; 
+  }
+  
+  /* Success */ 
+  .alert-success { 
+    background: #2ecc71; 
+    border: 1px solid #27ae60; 
+  }
+  
+  /* Info */ 
+  .alert-info { 
+    background: #3498db; 
+    border: 1px solid #2980b9; 
+  }
+  
+  /* Radius */
+  .radius {
+    border-radius: 3px;
+  }

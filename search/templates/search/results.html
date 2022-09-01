@@ -1,0 +1,206 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% load custom_tags %}
+
+{% block head %}
+    <title> {% translate "search" %}</title>
+{% endblock head %}
+
+{% block main %}
+
+    <main class='container'>
+        <section class='component'>
+            <div class='box_cover'>
+                <h3> Search </h3>
+            </div>
+
+            <div class='form-outter'>
+
+                <h2> {% translate "give it a shot may you got what you need" %} </h2>
+        
+                <form method='get'>
+                    {{ form.as_ul }}
+                    <button class='valid-button' type='submit'> {% translate "search" %}  </button>
+                    <button class='valid-button' type='reset'> {% translate "reset" %}</button>
+                </form>
+        
+            </div>
+        </section>
+        {% if copy %}
+            {% for copy in page_obj %}
+                <article class='episode'>
+                    <a href="{{ copy.book.get_view }}" class='book-article-link'>
+                        <div class='episode__title'> {{ copy.book|title }} </div>
+                    </a>    
+                    <div>
+
+                        <div class='episode__content'>
+
+                            <div class='subject'> {% translate 'language :' %}</div>
+                            <div class='subject__content'> <p> {{ copy.book.language }} </p> </div>
+
+                            <div class='subject'> {% translate 'author :' %}</div>
+                            <div class='subject__content'> <p> {{ copy.author }} </p> </div>
+
+                            <div class='subject'> {% translate 'translator :' %}</div>
+                            <div class='subject__content'> <p> {{ copy.translator }} </p> </div>
+
+                            {% comment %} <div class='subject'> {% translate 'ISBN :' %}</div>
+                            <div class='subject__content'> <p> {{ copy.isbn }} </p> </div> {% endcomment %}
+
+                            <div class='subject'> {% translate 'published :' %}</div>
+                            <div class='subject__content'> <p> {{ copy.published_on|date:'y m d' }} </p> </div>
+
+                            <div class='subject'> {% translate 'shelf code :' %}</div>
+                            <div class='subject__content'> <p> {{ copy.shelf_code }} </p> </div>
+
+                            <div class='subject'> {% translate 'category :' %}</div>
+                            <div class='subject__content'> <p> {{ copy.book.category }} </p> </div>
+
+                        </div>
+
+                        <div class='control'>
+                            <a href="{{ copy.get_edit_view }}"><button > {% translate "edit" %} </button></a>
+                            <a href="{{ copy.get_delete_view }}"><button > {% translate "delete" %} </button></a>
+                        </div>
+
+                    </div>
+                </article>
+            
+            {% endfor %}
+        {% else %}
+            {% for book in page_obj %}
+                <article class='episode'>
+                    <a href="{{ book.get_view }}" class='book-article-link'>
+                        <div class='episode__title'> {{ book|title }} </div>
+                    </a>    
+                    <div>
+                        {% comment %} <a href="{{ book.get_view }}" class='book-article-link'> {% endcomment %}
+                        <div class='episode__content'>
+    
+                            <div class='subject'> {% translate 'language :' %}</div>
+                            <div class='subject__content'> <p> {{ book.language }} </p> </div>
+                            
+                            <div class='subject'> {% translate 'No. copies :' %}</div>
+                            <div class='subject__content'> <p> {{ book|bookcopy:'number of copies' }} </p> </div>
+    
+                            <div class='subject'> {% translate 'category :' %}</div>
+                            <div class='subject__content'> <p> {{ book.category }} </p> </div>
+
+                            <div class='subject'>   </div>
+                            <div class='subject__content'> <p>  </p> </div>
+
+                            {% comment %}  {% endcomment %}
+                                {% for c in book.get_copies %}
+                                    <div class='subject'><h3> {% translate 'copy :' %} </h3></div>
+                                    <div class='subject__content'> <p> {{ c.shelf_code }} </p> </div>
+
+                                    <div class='subject'>{% translate 'author :' %}</div>
+                                    <div class='subject__content'> 
+                                        <p>  {{ c.author }} </p> 
+                                    </div>
+
+                                    <div class='subject'>{% translate 'translator :' %}</div>
+                                    <div class='subject__content'> 
+                                        <p>  {{ c.translator }} </p> 
+                                    </div>
+ 
+                                    <div class='subject'>{% translate 'published :' %}</div>
+                                    <div class='subject__content'> 
+                                        <p>  {{ c.published_on|date:'d m y' }} </p> 
+                                    </div>
+{% comment %}
+                                    <div class='subject'>{% translate 'ISBN :' %}</div>
+                                    <div class='subject__content'> 
+                                        <p>  {{ c.isbn }} </p> 
+                                    </div> {% endcomment %}
+
+                        
+                                
+                                {% endfor %}
+
+                                
+
+                            {% comment %}  {% endcomment %}
+    
+                        </div>
+                        {% comment %} </a> {% endcomment %}
+                        <div class='control'>
+                            <a href="{{ book.get_edit_view }}"><button > {% translate "edit" %} </button></a>
+                            <a href="{{ book.get_delete_view }}"><button > {% translate "delete" %} </button></a>
+                            <a href="{{ book.get_create_copy_view }}"><button > {% translate "add copy" %} </button></a>
+                        </div>
+    
+                    </div>
+                </article>
+            
+            {% endfor %}
+
+        {% endif %}
+             
+        
+    </main>
+
+
+{% endblock main %}
+
+{% block footer %}
+<footer>
+    
+
+    {% comment %} navigation {% endcomment %}
+    <div class="pagination">
+        <form method="get" id='paginator'>
+            <ul>
+                {% comment %} First \/ {% endcomment %}
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}">
+                        <li>{% translate "previous" %} </li></a>
+                    <a href="?page=1">
+                        <li>{% translate "1" %} </li></a>
+                
+                {% else %}
+                    <a>
+                        <li class="disabled">{% translate "previous" %}</li></a>
+                    <a>
+                        <li class="disabled"> 1 </li></a>
+                    
+            {% endif %}
+            {% comment %} <li class="page-item"><a class="page-link" href="#"></a></li> {% endcomment %}
+            
+            
+            <div class="page-forward">
+                <input type='number' name='page' id='page' min='1' max='{{ page_obj.paginator.num_pages }}'> </div>
+            
+            <a type="button" onclick='paginatorSubmit({{ page_obj.paginator.num_pages }})'>
+                <li>{% translate "Go" %}</li></a>
+            
+            <div>
+                <li class="refrence"> {% translate "Page" %} {{ page_obj.number }} </li></div>
+
+            {% comment %} end pagination \/ {% endcomment %}
+            {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.paginator.num_pages }}">
+                        <li>{{ page_obj.paginator.num_pages }}</li></a>
+                    <a href="?page={{ page_obj.next_page_number }}">
+                        <li class="">{% translate "Next" %} </li></a>
+                    {% else %}
+                    <a> 
+                        <li class="disabled">{{ page_obj.paginator.num_pages }}</li></a>
+                    <a>
+                        <li class="disabled">{% translate "Next" %} </li></a>
+                    
+            {% endif %}
+            </ul>
+        </form>
+        <div id='paginator_alert' class='alert alert-error ' >
+            {% translate "this page is not valid" %}
+        </div>
+    </div>
+    <p> user : hamidi <br>
+        Password : Amirmohammad </p>
+          
+</footer>
+          
+{% endblock footer %}

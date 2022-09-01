@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block head %}
+    <title> {% if request.get_full_path == book.get_create_copy_view %}
+            {{ book.title }} 
+    {% else %}
+            {% trans 'add books' %} 
+    {% endif %}</title>
+{% endblock head %}
+
+
+{% block section %}
+<section class='component'>
+    <div class='box_cover'>
+        
+        {% if request.get_full_path == book.get_create_copy_view %}
+            <h3> {{ book.title }} </h3>
+        {% else %}
+            <h3> {% trans 'books' %} </h3>
+        {% endif %}
+    </div>
+    <div class='form-outter'>
+
+        <h2> {% translate "Please enter book properties" %} </h2>
+
+        <form method='post'>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class='valid-button' type='submit'> {% translate "submit" %}  </button>
+            {% comment %} <button class='btn btn-primary' type='submit'> ثبت و جدید </button> {% endcomment %}
+        </form>
+
+    </div>
+
+</section>
+{% endblock section %}

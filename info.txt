@@ -1,0 +1,10 @@
+python version : 3.8.10
+super user:
+    hamidi
+    password : Amirmohammad
+
+
+command line to create .po file
+    django-admin makemessages --ignore="static" --ignore=".env" --all 
+command line to create .mo file 
+    django-admin makemessages compile
